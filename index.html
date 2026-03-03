@@ -407,7 +407,7 @@ select {
                 ⚠️ 【ご確認ください】<br>
                 <small>合計PVが750の倍数（750, 1500, 2250...）になるよう商品を選択してください。</small>
             </div>
-            <div id="mainWarn" class="alert">⚠️ 新規登録では「必須商品」から1点お選びください。</div>
+            <div id="mainWarn" class="alert">⚠️ 新規登録では「必須商品」から1点以上お選びください。</div>
         </div>
     </div>
 
@@ -563,9 +563,9 @@ function renderProducts() {
     const hasMain = MAIN_PRODUCTS.some(p => qty[p.id] > 0);
 
     if(isNew) {
-        area.innerHTML += `<div class="product-section-title">🌿 必須商品（下記から1点お選びください）</div>`;
+        area.innerHTML += `<div class="product-section-title">🌱 必須商品（下記から1点以上お選びください）</div>`;
         MAIN_PRODUCTS.forEach(p => area.appendChild(createCard(p, false)));
-        area.innerHTML += `<div class="product-section-title">➕ 追加商品（${hasMain ? '自由に追加できます' : 'まず必須商品を1点お選びください'}）</div>`;
+        area.innerHTML += `<div class="product-section-title">➕ 追加商品（${hasMain ? '自由に追加できます' : 'まず必須商品を1点以上お選びください'}）</div>`;
         SUB_PRODUCTS.forEach(p => area.appendChild(createCard(p, !hasMain)));
     } else {
         ALL_PRODUCTS.forEach(p => area.appendChild(createCard(p, false)));
