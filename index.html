@@ -265,37 +265,39 @@ select {
 /* ==========================================
    スマホ専用スタイル (画像を100pxに拡大、2カラム)
    ========================================== */
-@media (max-width: 900px) {
+/* 128行目付近の @media ブロックをこれに差し替え */
+@media(max-width: 900px) {
+    /* ヘッダーを縦並びにし、左寄せにする */
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    /* スマホでは歯車を消す */
+    .admin-gear {
+        display: none;
+    }
+
+    /* 説明文が詰まらないよう幅を100%にする */
+    .header-text {
+        width: 100%;
+    }
+    .header-text h1 { font-size: 1rem; }
+    .header-text p { font-size: 0.75rem; }
+
+    /* レイアウトと商品カードの調整 */
     .container { grid-template-columns: 1fr; }
     .right-panel { position: static; height: auto; border-left: none; border-top: 4px solid var(--accent); padding-bottom: 5rem; }
-    
-    .product-card {
-        padding: 1.2rem;
-        gap: 1.2rem;
-    }
-    /* スマホで画像を大きく (100px) */
-    .prod-img {
-        width: 100px;
-        height: 100px;
-        border-radius: 10px;
-    }
-    .product-name {
-        font-size: 1rem;
-    }
-    .product-body {
-        gap: 0.4rem;
-    }
-    .qty-ctrl {
-        justify-content: space-between; /* -ボタンと+ボタンを両端に寄せて押しやすく */
-    }
-    .qty-btn {
-        width: 48px; height: 48px; /* 巨大化して押しやすく */
-        font-size: 1.4rem;
-    }
-    .qty-num { font-size: 1.3rem; width: 40px; }
-
     .type-grid { grid-template-columns: 1fr; }
-}
+
+    /* 商品カード内：画像を大きく(100px)し、テキストを整理 */
+    .product-card { padding: 1.2rem; gap: 1.2rem; }
+    .prod-img { width: 100px; height: 100px; }
+    .product-name { font-size: 1rem; }
+    }
+
 </style>
 </head>
 <body>
