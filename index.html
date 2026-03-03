@@ -143,9 +143,14 @@ header {
     color: var(--accent);
 }
 
+/* 修正点：セレクトボックスのデザイン */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
 select {
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 3rem 1rem 1rem; /* 右側に🔽のための余白を追加 */
     border: 2px solid var(--border);
     border-radius: 12px;
     font-size: 1rem;
@@ -154,6 +159,29 @@ select {
     appearance: none;
     cursor: pointer;
     box-shadow: var(--shadow);
+}
+/* 🔽アイコンを表示 */
+.select-wrapper::after {
+    content: '🔽';
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+/* 修正点：送料の注意書きデザイン */
+.shipping-warning {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: #92400e;
+    background: #fffbeb;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #f59e0b;
+    line-height: 1.5;
+    font-weight: 500;
 }
 
 .product-section-title {
@@ -323,7 +351,6 @@ select {
 </div>
 
 <header>
-    <!-- alt属性から "Logo" を削除、読み込みエラー時のテキストを "AOT" のみに変更 -->
     <img src="image_aae024.png" alt="AOT" class="header-logo" onerror="this.src='https://placehold.co/200x60/1f4e35/ffffff?text=AOT'">
     <div class="header-text">
         <h1>登録料金 かんたん計算ツール</h1>
@@ -355,17 +382,22 @@ select {
 
         <div class="section">
             <div class="section-title"><span class="step-num">2</span> 発送先の国・地域を選んでください</div>
-            <select id="countrySelect" onchange="recalc()">
-                <option value="0">🇹🇼 台湾・中国・マレーシア・香港（送料：0%）</option>
-                <option value="5">🌏 東南アジア（送料：5%）</option>
-                <option value="7">🇹🇭 タイ（送料：7%）</option>
-                <option value="9">🇸🇬 シンガポール（送料：9%）</option>
-                <option value="10" selected>🇯🇵 日本・韓国・豪州・欧州・米国など（送料：10%）</option>
-                <option value="11">🇮🇩 インドネシア（送料：11%）</option>
-                <option value="12">🇵🇭 フィリピン（送料：12%）</option>
-                <option value="15">🌍 中東・アフリカ（送料：15%）</option>
-                <option value="10"> その他の国（送料 10%）</option>
-            </select>
+            <div class="select-wrapper">
+                <select id="countrySelect" onchange="recalc()">
+                    <option value="0">🇹🇼 台湾・中国・マレーシア・香港（送料：0%）</option>
+                    <option value="5">🌏 東南アジア（送料：5%）</option>
+                    <option value="7">🇹🇭 タイ（送料：7%）</option>
+                    <option value="9">🇸🇬 シンガポール（送料：9%）</option>
+                    <option value="10" selected>🇯🇵 日本・韓国・豪州・欧州・米国など（送料：10%）</option>
+                    <option value="11">🇮🇩 インドネシア（送料：11%）</option>
+                    <option value="12">🇵🇭 フィリピン（送料：12%）</option>
+                    <option value="15">🌍 中東・アフリカ（送料：15%）</option>
+                    <option value="10"> その他の国（送料 10%）</option>
+                </select>
+            </div>
+            <div class="shipping-warning">
+                💡 日本以外の国への配送をご希望の場合は、配送条件が異なる可能性がございますので、必ず事前にご相談ください。
+            </div>
         </div>
 
         <div class="section">
@@ -389,7 +421,7 @@ select {
             <div class="pv-bar-bg"><div id="pvBar" class="pv-bar"></div></div>
         </div>
 
-        <!-- Rank Display Area (Restored) -->
+        <!-- Rank Display Area -->
         <div class="rank-row">
             <div>
                 <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700; margin-bottom:0.35rem">登録ランク</div>
